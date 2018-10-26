@@ -3,9 +3,12 @@ package com.jonasvieira.iddog.Presentations.Login;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 import android.util.Patterns;
 
 import com.jonasvieira.iddog.Data.Login.Login;
+import com.jonasvieira.iddog.Data.Login.User;
+import com.jonasvieira.iddog.Database.LoginDAO;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Server.DogServer;
 import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
@@ -48,7 +51,6 @@ public class MainPresenter implements MainContract.Presenter {
     private void makeRequestLogin(String email) {
         controlVisibilityProgress(true);
         requestLogin(email);
-        controlVisibilityProgress(false);
     }
 
     private void controlVisibilityProgress(boolean progressIsVisible) {
@@ -64,26 +66,39 @@ public class MainPresenter implements MainContract.Presenter {
     private void requestLogin(String email) {
         DogServer.getInstance(mContext).requestLogin(new ModelRequestLogin(email), new Callback<Login>() {
             @Override
-            public void onResponse(Call<Login> call, Response<Login> response) {
+            public void onResponse(@NonNull Call<Login> call, @NonNull Response<Login> response) {
 
                 if (response.isSuccessful()) {
                     mMainView.showSnackBarError("Login com sucesso!" + response.body().getUser().getToken());
+
+                    saveCredentials(response.body().getUser());
                 } else {
                     mMainView.showSnackBarError("Erro!" + response.body());
+                    controlVisibilityProgress(false);
                 }
             }
 
             @Override
-            public void onFailure(Call<Login> call, Throwable t) {
+            public void onFailure(@NonNull Call<Login> call, @NonNull Throwable t) {
                 mMainView.showSnackBarError("Erro!" + t);
+                controlVisibilityProgress(false);
             }
         });
 
     }
 
+    private void saveCredentials(User user) {
+        if (new LoginDAO().save(user)) {
+            mMainView.navigateToFeed();
+        } else {
+            mMainView.showSnackBarError("Erro ao salvar");
+        }
+        controlVisibilityProgress(false);
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        NetworkInfo netInfo = cm != null ? cm.getActiveNetworkInfo() : null;
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }

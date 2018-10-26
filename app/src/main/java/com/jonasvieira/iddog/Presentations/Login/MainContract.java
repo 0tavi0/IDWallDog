@@ -15,7 +15,7 @@ public interface MainContract {
 
         void showEditTextError(String message);
 
-        void navigateToFeed(String token);
+        void navigateToFeed();
     }
 
     interface Presenter {

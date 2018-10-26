@@ -1,9 +1,9 @@
 package com.jonasvieira.iddog.Presentations.Login;
 
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -14,6 +14,8 @@ import com.jonasvieira.iddog.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.widget.Toast.makeText;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void showSnackBarError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void navigateToFeed(String token) {
-
+    public void navigateToFeed() {
+        makeText(this, "navigate to feed", Toast.LENGTH_SHORT).show();
     }
 }
