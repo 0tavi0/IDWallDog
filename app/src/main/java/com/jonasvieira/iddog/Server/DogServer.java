@@ -2,10 +2,8 @@ package com.jonasvieira.iddog.Server;
 
 import android.content.Context;
 
-import com.jonasvieira.iddog.Data.Login;
+import com.jonasvieira.iddog.Data.Login.Login;
 import com.jonasvieira.iddog.R;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,8 +31,8 @@ public class DogServer {
         return dogServer;
     }
 
-    public void requestLogin(String email, Callback<List<Login>> callback) {
-        Call<List<Login>> loginCall = iDogServer.requestLogin(email);
+    public void requestLogin(ModelRequestLogin email, Callback<Login> callback) {
+        Call<Login> loginCall = iDogServer.requestLogin(email);
         loginCall.enqueue(callback);
     }
 }

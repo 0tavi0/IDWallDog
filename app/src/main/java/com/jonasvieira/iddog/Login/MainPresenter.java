@@ -5,10 +5,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Patterns;
 
-import com.jonasvieira.iddog.Data.Login;
+import com.google.gson.Gson;
+import com.jonasvieira.iddog.Data.Login.Login;
+import com.jonasvieira.iddog.Data.Login.User;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Server.DogServer;
+import com.jonasvieira.iddog.Server.ModelRequestLogin;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,9 +31,9 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void validateCredentials(String email) {
-        if (isNetworkAvailable()){
+        if (isNetworkAvailable()) {
             validateEmail(email);
-        }else{
+        } else {
             mMainView.showSnackBarError(mContext.getString(R.string.sem_conexao));
         }
     }
@@ -46,7 +50,7 @@ public class MainPresenter implements MainContract.Presenter {
         }
     }
 
-    private void makeRequestLogin(String email){
+    private void makeRequestLogin(String email) {
         controlVisibilityProgress(true);
         requestLogin(email);
         controlVisibilityProgress(false);
@@ -63,19 +67,25 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void requestLogin(String email) {
-        DogServer.getInstance(mContext).requestLogin(email, new Callback<List<Login>>() {
+        DogServer.getInstance(mContext).requestLogin(new ModelRequestLogin(email), new Callback<Login>() {
             @Override
-            public void onResponse(Call<List<Login>> call, Response<List<Login>> response) {
-                mMainView.showSnackBarError("Login com sucesso!" + response.body());
+            public void onResponse(Call<Login> call, Response<Login> response) {
+
+                if (response.isSuccessful()) {
+                    mMainView.showSnackBarError("Login com sucesso!" + response.body().getUser().getToken());
+                } else {
+                    mMainView.showSnackBarError("Erro!" + response.body());
+                }
             }
 
             @Override
-            public void onFailure(Call<List<Login>> call, Throwable t) {
+            public void onFailure(Call<Login> call, Throwable t) {
                 mMainView.showSnackBarError("Erro!" + t);
             }
         });
 
     }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
