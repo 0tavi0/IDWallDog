@@ -1,4 +1,4 @@
-package com.jonasvieira.iddog.Server;
+package com.jonasvieira.iddog.Data.Requests;
 
 public class ModelRequestLogin {
     final String email;

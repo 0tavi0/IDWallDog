@@ -1,4 +1,4 @@
-package com.jonasvieira.iddog.SplashScreen;
+package com.jonasvieira.iddog.Presentations.SplashScreen;
 
 import android.content.Context;
 import android.os.Handler;

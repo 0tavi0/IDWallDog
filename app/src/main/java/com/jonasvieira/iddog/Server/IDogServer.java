@@ -1,6 +1,7 @@
 package com.jonasvieira.iddog.Server;
 
 import com.jonasvieira.iddog.Data.Login.Login;
+import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

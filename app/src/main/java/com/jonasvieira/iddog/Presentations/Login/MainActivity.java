@@ -1,4 +1,4 @@
-package com.jonasvieira.iddog.Login;
+package com.jonasvieira.iddog.Presentations.Login;
 
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;

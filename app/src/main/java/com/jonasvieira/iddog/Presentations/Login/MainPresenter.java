@@ -1,19 +1,14 @@
-package com.jonasvieira.iddog.Login;
+package com.jonasvieira.iddog.Presentations.Login;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Patterns;
 
-import com.google.gson.Gson;
 import com.jonasvieira.iddog.Data.Login.Login;
-import com.jonasvieira.iddog.Data.Login.User;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Server.DogServer;
-import com.jonasvieira.iddog.Server.ModelRequestLogin;
-
-import java.util.Collections;
-import java.util.List;
+import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
 
 import retrofit2.Call;
 import retrofit2.Callback;

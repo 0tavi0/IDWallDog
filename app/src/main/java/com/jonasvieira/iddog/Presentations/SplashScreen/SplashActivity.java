@@ -1,11 +1,10 @@
-package com.jonasvieira.iddog.SplashScreen;
+package com.jonasvieira.iddog.Presentations.SplashScreen;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.jonasvieira.iddog.Login.MainActivity;
+import com.jonasvieira.iddog.Presentations.Login.MainActivity;
 import com.jonasvieira.iddog.R;
 
 public class SplashActivity extends AppCompatActivity implements SplashContract.View {
