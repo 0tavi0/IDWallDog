@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IDDog</string>
+    <string name="developer_name">Jonas Vieira</string>
+    <string name="icon_app">icon app</string>
+    <string name="acessar">Acessar</string>
+    <string name="digite_seu_e_mail">Digite seu e-mail:</string>
+    <string name="id_dog">ID Dog</string>
+    <string name="info_acessar">Para acessar, insira abaixo um e-mail válido</string>
+    <string name="sem_conexao">Ops, parece que você não está conectado à internet</string>
+
+    <string name="base_url"> </string>
+</resources>
