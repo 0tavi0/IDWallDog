@@ -5,7 +5,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Patterns;
 
+import com.jonasvieira.iddog.Data.Login;
 import com.jonasvieira.iddog.R;
+import com.jonasvieira.iddog.Server.DogServer;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainPresenter implements MainContract.Presenter {
 
@@ -40,7 +48,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     private void makeRequestLogin(String email){
         controlVisibilityProgress(true);
-        mMainView.showSnackBarError("Login com sucesso!");
+        requestLogin(email);
         controlVisibilityProgress(false);
     }
 
@@ -54,6 +62,20 @@ public class MainPresenter implements MainContract.Presenter {
         }
     }
 
+    private void requestLogin(String email) {
+        DogServer.getInstance(mContext).requestLogin(email, new Callback<List<Login>>() {
+            @Override
+            public void onResponse(Call<List<Login>> call, Response<List<Login>> response) {
+                mMainView.showSnackBarError("Login com sucesso!" + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Login>> call, Throwable t) {
+                mMainView.showSnackBarError("Erro!" + t);
+            }
+        });
+
+    }
     private boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();

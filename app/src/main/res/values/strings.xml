@@ -8,5 +8,5 @@
     <string name="info_acessar">Para acessar, insira abaixo um e-mail válido</string>
     <string name="sem_conexao">Ops, parece que você não está conectado à internet</string>
 
-    <string name="base_url"> </string>
+    <string name="base_url">https://api-iddog.idwall.co/</string>
 </resources>
