@@ -17,4 +17,5 @@
     <string name="hound">Hound</string>
     <string name="pug">Pug</string>
     <string name="logout">Logout</string>
+    <string name="placeholder_dog">placeholder dog</string>
 </resources>

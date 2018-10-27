@@ -42,26 +42,30 @@ public class FeedPresenter implements FeedContract.Presenter {
     }
 
     private void makeRequest(String token) {
+        view.showProgressBar();
+
         getDogsByBreed(Constants.HUSKY, token);
         getDogsByBreed(Constants.LABRADOR, token);
         getDogsByBreed(Constants.HOUND, token);
         getDogsByBreed(Constants.PUG, token);
     }
 
-    private void getDogsByBreed(String husky, String token) {
-        DogServer.getInstance(mContext).requestFeed(husky, token, new Callback<Feed>() {
+    private void getDogsByBreed(final String breed, String token) {
+        DogServer.getInstance(mContext).requestFeed(breed, token, new Callback<Feed>() {
             @Override
             public void onResponse(@NonNull Call<Feed> call, @NonNull Response<Feed> response) {
                 if (response.isSuccessful()) {
-                    view.showSnackBarError("Login com sucesso!" + response.body().getList().get(1));
+                    view.populateRecyclerView(breed, response.body());
                 } else {
                     view.showSnackBarError("Erro!" + response.body());
                 }
+                view.hideProgressBar();
             }
 
             @Override
             public void onFailure(@NonNull Call<Feed> call, @NonNull Throwable t) {
                 view.showSnackBarError("Erro!" + t);
+                view.hideProgressBar();
             }
         });
     }

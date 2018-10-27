@@ -4,20 +4,16 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.jonasvieira.iddog.Data.Feed.Feed;
 import com.jonasvieira.iddog.Presentations.Feed.Adapter.TabAdapter;
-import com.jonasvieira.iddog.Presentations.Login.MainActivity;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Utils.Constants;
 
@@ -31,8 +27,11 @@ public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSe
     TabLayout tabLayout;
     @BindView(R.id.container)
     ViewPager mViewPager;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     FeedPresenter feedPresenter;
+    FeedFragment feedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +99,55 @@ public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     @Override
-    public void showProgressBar() {
+    public void populateRecyclerView(String breed, final Feed list) {
+        switch (breed) {
+            case Constants.HUSKY:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        feedFragment = (FeedFragment) mViewPager.getAdapter().instantiateItem(mViewPager, Constants.INT_HUSKY);
+                        feedFragment.setAdapter(list.getList());
+                    }
+                });
+                break;
+            case Constants.LABRADOR:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        feedFragment = (FeedFragment) mViewPager.getAdapter().instantiateItem(mViewPager, Constants.INT_LABRADOR);
+                        feedFragment.setAdapter(list.getList());
+                    }
+                });
+                break;
+            case Constants.HOUND:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        feedFragment = (FeedFragment) mViewPager.getAdapter().instantiateItem(mViewPager, Constants.INT_HOUND);
+                        feedFragment.setAdapter(list.getList());
+                    }
+                });
+                break;
+            case Constants.PUG:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        feedFragment = (FeedFragment) mViewPager.getAdapter().instantiateItem(mViewPager, Constants.INT_PUG);
+                        feedFragment.setAdapter(list.getList());
+                    }
+                });
+                break;
+        }
+    }
 
+    @Override
+    public void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
