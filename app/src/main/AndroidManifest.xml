@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="DATABASE"
             android:value="sugar_iddog.db" />
@@ -38,6 +37,10 @@
         <activity
             android:name=".Presentations.Login.MainActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Presentations.Feed.FeedActivity"
+            android:label="@string/title_activity_feed"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

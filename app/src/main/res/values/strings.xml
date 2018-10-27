@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IDDog</string>
+    <string name="app_name">ID Dog</string>
     <string name="developer_name">Jonas Vieira</string>
     <string name="icon_app">icon app</string>
     <string name="acessar">Acessar</string>
@@ -7,6 +7,17 @@
     <string name="id_dog">ID Dog</string>
     <string name="info_acessar">Para acessar, insira abaixo um e-mail válido</string>
     <string name="sem_conexao">Ops, parece que você não está conectado à internet</string>
+    <string name="title_activity_feed">feedActivity</string>
+    <string name="ola_bem_vindo">Olá, Bem vindo!</string>
+    <string name="ola">Olá,</string>
+    <string name="bemvindo">Bem vindo!</string>
+    <string name="toolbarTitle">Meu Feed</string>
+    <string name="husky">Husky</string>
+    <string name="labrador">Labrador</string>
+    <string name="hound">Hound</string>
+    <string name="pug">Pug</string>
 
     <string name="base_url">https://api-iddog.idwall.co/</string>
+
+    <string name="logout">Logout</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.jonasvieira.iddog.Presentations.Login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.jonasvieira.iddog.Presentations.Feed.FeedActivity;
 import com.jonasvieira.iddog.R;
 
 import butterknife.BindView;
@@ -76,6 +78,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void navigateToFeed() {
-        makeText(this, "navigate to feed", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, FeedActivity.class));
     }
 }
