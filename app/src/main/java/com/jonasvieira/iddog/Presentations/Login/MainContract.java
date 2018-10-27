@@ -20,6 +20,8 @@ public interface MainContract {
 
     interface Presenter {
 
+        void hasAutoLogin();
+
         void validateCredentials(String email);
     }
 }

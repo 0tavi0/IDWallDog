@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
 
         mainPresenter = new MainPresenter(this, MainActivity.this);
+        mainPresenter.hasAutoLogin();
     }
 
     @OnClick(R.id.buttonLogin)

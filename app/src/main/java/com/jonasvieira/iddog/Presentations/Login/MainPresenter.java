@@ -13,6 +13,8 @@ import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Server.DogServer;
 import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +27,19 @@ public class MainPresenter implements MainContract.Presenter {
     MainPresenter(MainContract.View view, Context context) {
         this.view = view;
         this.mContext = context;
+    }
+
+    @Override
+    public void hasAutoLogin() {
+        LoginDAO loginDAO = new LoginDAO();
+        if (loginDAO.count() > 0) {
+            List<User> mList = loginDAO.consultAll();
+            if (mList != null) {
+                view.navigateToFeed();
+            } else {
+                view.showSnackBarError("erro ao consultar token do banco");
+            }
+        }
     }
 
     @Override
