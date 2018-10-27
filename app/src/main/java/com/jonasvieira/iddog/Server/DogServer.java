@@ -2,9 +2,11 @@ package com.jonasvieira.iddog.Server;
 
 import android.content.Context;
 
+import com.jonasvieira.iddog.Data.Feed.Feed;
 import com.jonasvieira.iddog.Data.Login.Login;
 import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
 import com.jonasvieira.iddog.R;
+import com.jonasvieira.iddog.Utils.Constants;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,9 +19,8 @@ public class DogServer {
     private static DogServer dogServer;
 
     private DogServer(Context context) {
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(context.getString(R.string.base_url))
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         iDogServer = retrofit.create(IDogServer.class);
@@ -35,5 +36,10 @@ public class DogServer {
     public void requestLogin(ModelRequestLogin email, Callback<Login> callback) {
         Call<Login> loginCall = iDogServer.requestLogin(email);
         loginCall.enqueue(callback);
+    }
+
+    public void requestFeed(String breed, String token, Callback<Feed> callback) {
+        Call<Feed> feedCall = iDogServer.requestFeed(breed, token);
+        feedCall.enqueue(callback);
     }
 }

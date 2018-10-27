@@ -19,11 +19,11 @@ import retrofit2.Response;
 
 public class MainPresenter implements MainContract.Presenter {
 
-    private MainContract.View mMainView;
+    private MainContract.View view;
     private Context mContext;
 
     MainPresenter(MainContract.View view, Context context) {
-        this.mMainView = view;
+        this.view = view;
         this.mContext = context;
     }
 
@@ -32,7 +32,7 @@ public class MainPresenter implements MainContract.Presenter {
         if (isNetworkAvailable()) {
             validateEmail(email);
         } else {
-            mMainView.showSnackBarError(mContext.getString(R.string.sem_conexao));
+            view.showSnackBarError(mContext.getString(R.string.sem_conexao));
         }
     }
 
@@ -41,10 +41,10 @@ public class MainPresenter implements MainContract.Presenter {
             if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 makeRequestLogin(email);
             } else {
-                mMainView.showEditTextError("E-mail invalido");
+                view.showEditTextError("E-mail invalido");
             }
         } else {
-            mMainView.showEditTextError("E-mail vazio");
+            view.showEditTextError("E-mail vazio");
         }
     }
 
@@ -55,11 +55,11 @@ public class MainPresenter implements MainContract.Presenter {
 
     private void controlVisibilityProgress(boolean progressIsVisible) {
         if (progressIsVisible) {
-            mMainView.hideButtonLogin();
-            mMainView.showProgressBar();
+            view.hideButtonLogin();
+            view.showProgressBar();
         } else {
-            mMainView.showButtonLogin();
-            mMainView.hideProgressBar();
+            view.showButtonLogin();
+            view.hideProgressBar();
         }
     }
 
@@ -69,18 +69,18 @@ public class MainPresenter implements MainContract.Presenter {
             public void onResponse(@NonNull Call<Login> call, @NonNull Response<Login> response) {
 
                 if (response.isSuccessful()) {
-                    mMainView.showSnackBarError("Login com sucesso!" + response.body().getUser().getToken());
+                    view.showSnackBarError("Login com sucesso!" + response.body().getUser().getToken());
 
                     saveCredentials(response.body().getUser());
                 } else {
-                    mMainView.showSnackBarError("Erro!" + response.body());
+                    view.showSnackBarError("Erro!" + response.body());
                     controlVisibilityProgress(false);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Login> call, @NonNull Throwable t) {
-                mMainView.showSnackBarError("Erro!" + t);
+                view.showSnackBarError("Erro!" + t);
                 controlVisibilityProgress(false);
             }
         });
@@ -89,9 +89,9 @@ public class MainPresenter implements MainContract.Presenter {
 
     private void saveCredentials(User user) {
         if (new LoginDAO().save(user)) {
-            mMainView.navigateToFeed();
+            view.navigateToFeed();
         } else {
-            mMainView.showSnackBarError("Erro ao salvar");
+            view.showSnackBarError("Erro ao salvar");
         }
         controlVisibilityProgress(false);
     }

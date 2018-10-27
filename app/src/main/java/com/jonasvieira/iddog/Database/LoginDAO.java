@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.jonasvieira.iddog.Data.Login.User;
 
+import java.util.List;
+
 public class LoginDAO {
 
     private static String TAG = "BancoLogin";
@@ -17,6 +19,20 @@ public class LoginDAO {
         } catch (Exception e) {
             Log.i(TAG, "Falha ao inserir: " + e.getMessage());
             return false;
+        }
+    }
+
+    public long count() {
+        return User.count(User.class);
+    }
+
+    public List<User> consultAll() {
+        try {
+            Log.i(TAG, "Recuperado com sucesso");
+            return User.listAll(User.class);
+        } catch (Exception e) {
+            Log.i(TAG, "Falha ao consultar: " + e.getMessage());
+            return null;
         }
     }
 }

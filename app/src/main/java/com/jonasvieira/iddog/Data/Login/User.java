@@ -19,6 +19,9 @@ public class User extends SugarRecord {
         this.token = token;
     }
 
+    public User() {
+    }
+
     public String getEmail() {
         return email;
     }
