@@ -49,11 +49,7 @@ public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSe
         getSupportActionBar().setTitle(getString(R.string.toolbarTitle));
 
         configureTabLayout();
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         feedPresenter.getTokenToRequestDogs();
     }
 

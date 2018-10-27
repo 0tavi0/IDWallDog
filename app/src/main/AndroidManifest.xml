@@ -40,7 +40,8 @@
         <activity
             android:name=".Presentations.Feed.FeedActivity"
             android:label="@string/title_activity_feed"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Presentations.Details.DetailsActivity"></activity>
     </application>
 
 </manifest>

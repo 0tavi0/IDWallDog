@@ -20,4 +20,5 @@
     <string name="placeholder_dog">placeholder dog</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="image_dog_expanded">image dog expanded</string>
 </resources>

@@ -1,16 +1,23 @@
 package com.jonasvieira.iddog.Presentations.Feed;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.jonasvieira.iddog.Presentations.Details.DetailsActivity;
+import com.jonasvieira.iddog.Presentations.Details.DetailsContract;
 import com.jonasvieira.iddog.Presentations.Feed.Adapter.FeedAdapter;
 import com.jonasvieira.iddog.R;
+import com.jonasvieira.iddog.Utils.Constants;
 
 import java.util.List;
 
@@ -43,7 +50,16 @@ public class FeedFragment extends Fragment implements DogOnClickListener {
     }
 
     @Override
-    public void clickDog(String item, int position) {
-        Toast.makeText(getContext(), item + position, Toast.LENGTH_SHORT).show();
+    public void clickDog(String item, int position, ImageView imageView) {
+        Intent intent = new Intent(getContext(), DetailsActivity.class);
+        intent.putExtra("image", item);
+        intent.putExtra(Constants.IMAGE_DOG, ViewCompat.getTransitionName(imageView));
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                getActivity(),
+                imageView,
+                ViewCompat.getTransitionName(imageView));
+
+        startActivity(intent, options.toBundle());
     }
 }

@@ -2,6 +2,7 @@ package com.jonasvieira.iddog.Presentations.Feed.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.ProgressBar;
 
 import com.jonasvieira.iddog.Presentations.Feed.DogOnClickListener;
 import com.jonasvieira.iddog.R;
+import com.jonasvieira.iddog.Utils.Constants;
 import com.jonasvieira.iddog.Utils.GlideHelper;
 
 import java.util.List;
@@ -57,10 +59,12 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
             imageDog = itemView.findViewById(R.id.imgDog);
             progressBar = itemView.findViewById(R.id.progressBar);
 
+            ViewCompat.setTransitionName(imageDog, Constants.IMAGE_DOG);
+
             cardDog.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mClickListener.clickDog(mList.get(getAdapterPosition()), getLayoutPosition());
+                    mClickListener.clickDog(mList.get(getAdapterPosition()), getLayoutPosition(), imageDog);
                 }
             });
         }

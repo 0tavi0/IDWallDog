@@ -15,4 +15,6 @@ public class Constants {
     public static final int INT_LABRADOR = 1;
     public static final int INT_HOUND = 2;
     public static final int INT_PUG = 3;
+
+    public static final String IMAGE_DOG = "imageDog";
 }
