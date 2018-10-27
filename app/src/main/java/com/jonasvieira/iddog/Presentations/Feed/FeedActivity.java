@@ -1,6 +1,9 @@
 package com.jonasvieira.iddog.Presentations.Feed;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import com.jonasvieira.iddog.Data.Feed.Feed;
 import com.jonasvieira.iddog.Presentations.Feed.Adapter.TabAdapter;
+import com.jonasvieira.iddog.Presentations.Login.MainActivity;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Utils.Constants;
 
@@ -77,11 +81,19 @@ public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_logout) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Atenção");
+            builder.setMessage("Deseja realmente efetuar logout?");
+            builder.setPositiveButton(R.string.sim, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    feedPresenter.clearDatabase();
+                }
+            });
+            builder.setNegativeButton(R.string.nao, null);
+            builder.create().show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -153,5 +165,25 @@ public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public void showSnackBarError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void navigateToHome() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Atenção");
+        builder.setMessage("Deseja realmente sair?");
+        builder.setPositiveButton(R.string.sim, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.nao, null);
+        builder.create().show();
     }
 }

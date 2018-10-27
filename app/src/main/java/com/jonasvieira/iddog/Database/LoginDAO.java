@@ -35,4 +35,15 @@ public class LoginDAO {
             return null;
         }
     }
+
+    public boolean clearAll() {
+        try {
+            Log.i(TAG, "Deletado com sucesso");
+            User.deleteAll(User.class);
+            return true;
+        } catch (Exception e) {
+            Log.i(TAG, "Erro ao deletar");
+            return false;
+        }
+    }
 }

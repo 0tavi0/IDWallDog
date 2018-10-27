@@ -12,10 +12,14 @@ public interface FeedContract {
         void hideProgressBar();
 
         void showSnackBarError(String message);
+
+        void navigateToHome();
     }
 
     interface Presenter {
 
         void getTokenToRequestDogs();
+
+        void clearDatabase();
     }
 }

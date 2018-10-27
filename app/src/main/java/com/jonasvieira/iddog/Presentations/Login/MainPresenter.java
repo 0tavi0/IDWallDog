@@ -84,8 +84,6 @@ public class MainPresenter implements MainContract.Presenter {
             public void onResponse(@NonNull Call<Login> call, @NonNull Response<Login> response) {
 
                 if (response.isSuccessful()) {
-                    view.showSnackBarError("Login com sucesso!" + response.body().getUser().getToken());
-
                     saveCredentials(response.body().getUser());
                 } else {
                     view.showSnackBarError("Erro!" + response.body());

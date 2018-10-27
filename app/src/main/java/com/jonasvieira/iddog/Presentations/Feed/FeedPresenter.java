@@ -21,16 +21,17 @@ public class FeedPresenter implements FeedContract.Presenter {
 
     public FeedContract.View view;
     private Context mContext;
+    private LoginDAO loginDAO;
 
     FeedPresenter(FeedContract.View view, Context mContext) {
         this.view = view;
         this.mContext = mContext;
+        loginDAO = new LoginDAO();
+
     }
 
     @Override
     public void getTokenToRequestDogs() {
-        LoginDAO loginDAO = new LoginDAO();
-
         if (loginDAO.count() > 0) {
             List<User> mList = loginDAO.consultAll();
             if (mList != null) {
@@ -68,6 +69,15 @@ public class FeedPresenter implements FeedContract.Presenter {
                 view.hideProgressBar();
             }
         });
+    }
+
+    @Override
+    public void clearDatabase() {
+        if (loginDAO.clearAll()) {
+            view.navigateToHome();
+        } else {
+            view.showSnackBarError("Erro ao sair, tente novamente!");
+        }
     }
 }
 

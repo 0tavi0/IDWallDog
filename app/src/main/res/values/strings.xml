@@ -18,4 +18,6 @@
     <string name="pug">Pug</string>
     <string name="logout">Logout</string>
     <string name="placeholder_dog">placeholder dog</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
 </resources>

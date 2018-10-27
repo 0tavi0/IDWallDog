@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jonasvieira.iddog.Presentations.Feed.Adapter.FeedAdapter;
 import com.jonasvieira.iddog.R;
@@ -16,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FeedFragment extends Fragment {
+public class FeedFragment extends Fragment implements DogOnClickListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -37,7 +38,12 @@ public class FeedFragment extends Fragment {
     }
 
     public void setAdapter(List<String> list) {
-        FeedAdapter feedAdapter = new FeedAdapter(list);
+        FeedAdapter feedAdapter = new FeedAdapter(list, this);
         recyclerView.setAdapter(feedAdapter);
+    }
+
+    @Override
+    public void clickDog(String item, int position) {
+        Toast.makeText(getContext(), item + position, Toast.LENGTH_SHORT).show();
     }
 }

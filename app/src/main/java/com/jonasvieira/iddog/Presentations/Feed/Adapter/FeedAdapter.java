@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.jonasvieira.iddog.Presentations.Feed.DogOnClickListener;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Utils.GlideHelper;
 
@@ -18,10 +19,12 @@ import java.util.List;
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder> {
 
     private List<String> mList;
+    DogOnClickListener mClickListener;
     private Context context;
 
-    public FeedAdapter(List<String> list) {
+    public FeedAdapter(List<String> list, DogOnClickListener dogOnClickListener) {
         this.mList = list;
+        this.mClickListener = dogOnClickListener;
     }
 
     @NonNull
@@ -53,6 +56,13 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
             cardDog = itemView.findViewById(R.id.cardDog);
             imageDog = itemView.findViewById(R.id.imgDog);
             progressBar = itemView.findViewById(R.id.progressBar);
+
+            cardDog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mClickListener.clickDog(mList.get(getAdapterPosition()), getLayoutPosition());
+                }
+            });
         }
     }
 }

@@ -80,5 +80,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void navigateToFeed() {
         startActivity(new Intent(this, FeedActivity.class));
+        finish();
     }
 }
