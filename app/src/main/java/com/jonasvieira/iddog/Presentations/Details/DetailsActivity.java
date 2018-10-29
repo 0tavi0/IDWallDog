@@ -1,8 +1,7 @@
 package com.jonasvieira.iddog.Presentations.Details;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,10 +12,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.jonasvieira.iddog.Presentations.Feed.FeedFragment;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Utils.Constants;
-import com.jonasvieira.iddog.Utils.GlideHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +33,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
         supportPostponeEnterTransition();
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Detalhes");
 
         final Bundle extras = getIntent().getExtras();
         String image = extras.getString("image");
@@ -64,6 +65,13 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
                     }
                 })
                 .into(imageDog);
+
+        imageDog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                supportFinishAfterTransition();
+            }
+        });
     }
 
     @Override
@@ -79,5 +87,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     @Override
     public void showSnackBarError(String message) {
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }
