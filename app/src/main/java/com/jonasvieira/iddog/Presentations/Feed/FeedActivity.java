@@ -2,6 +2,9 @@ package com.jonasvieira.iddog.Presentations.Feed;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +28,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, FeedContract.View {
+
+    @BindView(R.id.layoutFeed)
+    CoordinatorLayout constraintLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabs)
@@ -160,7 +166,8 @@ public class FeedActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void showSnackBarError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar.make(constraintLayout, message, Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 
     @Override
