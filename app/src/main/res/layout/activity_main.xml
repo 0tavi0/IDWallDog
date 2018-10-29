@@ -68,7 +68,8 @@
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/digite_seu_e_mail" />
+            android:hint="@string/digite_seu_e_mail"
+            android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

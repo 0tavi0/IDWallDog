@@ -20,6 +20,7 @@ public class GlideHelper {
         if (url != null) {
             Glide.with(context)
                     .load(url)
+                    .placeholder(R.drawable.ic_placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override

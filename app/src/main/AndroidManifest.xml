@@ -27,7 +27,9 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.jonasvieira.iddog.Data" />
 
-        <activity android:name=".Presentations.SplashScreen.SplashActivity">
+        <activity
+            android:name=".Presentations.SplashScreen.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,12 +38,16 @@
         </activity>
         <activity
             android:name=".Presentations.Login.MainActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Presentations.Feed.FeedActivity"
             android:label="@string/title_activity_feed"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Presentations.Details.DetailsActivity"></activity>
+        <activity
+            android:name=".Presentations.Details.DetailsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
