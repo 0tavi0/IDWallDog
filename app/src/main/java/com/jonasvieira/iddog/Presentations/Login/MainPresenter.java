@@ -56,10 +56,10 @@ public class MainPresenter implements MainContract.Presenter {
             if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 makeRequestLogin(email);
             } else {
-                view.showEditTextError("E-mail invalido");
+                view.showEditTextError(mContext.getString(R.string.email_invalido));
             }
         } else {
-            view.showEditTextError("E-mail vazio");
+            view.showEditTextError(mContext.getString(R.string.email_vazio));
         }
     }
 

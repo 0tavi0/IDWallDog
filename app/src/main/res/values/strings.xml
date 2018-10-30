@@ -21,4 +21,6 @@
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="image_dog_expanded">image dog expanded</string>
+    <string name="email_vazio">Campo obrigatório, insira um e-mail válido</string>
+    <string name="email_invalido">E-mail invalido, verifique o endereço digitado e tente novamente</string>
 </resources>
