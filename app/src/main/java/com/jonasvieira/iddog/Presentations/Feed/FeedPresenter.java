@@ -4,9 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.jonasvieira.iddog.Data.Feed.Feed;
-import com.jonasvieira.iddog.Data.Login.Login;
 import com.jonasvieira.iddog.Data.Login.User;
-import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
 import com.jonasvieira.iddog.Database.LoginDAO;
 import com.jonasvieira.iddog.Server.DogServer;
 import com.jonasvieira.iddog.Utils.Constants;

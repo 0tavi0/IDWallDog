@@ -11,8 +11,6 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.jonasvieira.iddog.R;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 public class GlideHelper {
 
@@ -21,11 +19,10 @@ public class GlideHelper {
             Glide.with(context)
                     .load(url)
                     .placeholder(R.drawable.ic_placeholder)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            progressBar.setVisibility(View.INVISIBLE);
                             imageView.setImageResource(R.drawable.ic_error);
                             return false;
                         }
@@ -33,7 +30,6 @@ public class GlideHelper {
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target,
                                                        boolean isFromMemoryCache, boolean isFirstResource) {
-                            progressBar.setVisibility(View.INVISIBLE);
                             return false;
                         }
                     })
@@ -41,6 +37,6 @@ public class GlideHelper {
         } else {
             imageView.setImageResource(R.drawable.ic_error);
         }
-
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

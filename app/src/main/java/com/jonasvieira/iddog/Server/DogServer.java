@@ -5,7 +5,6 @@ import android.content.Context;
 import com.jonasvieira.iddog.Data.Feed.Feed;
 import com.jonasvieira.iddog.Data.Login.Login;
 import com.jonasvieira.iddog.Data.Requests.ModelRequestLogin;
-import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Utils.Constants;
 
 import retrofit2.Call;

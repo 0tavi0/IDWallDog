@@ -46,10 +46,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
 
         Glide.with(this)
                 .load(image)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+
                         progressBar.setVisibility(View.INVISIBLE);
                         imageDog.setImageResource(R.drawable.ic_error);
                         supportStartPostponedEnterTransition();
@@ -59,6 +60,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target,
                                                    boolean isFromMemoryCache, boolean isFirstResource) {
+
                         progressBar.setVisibility(View.INVISIBLE);
                         supportStartPostponedEnterTransition();
                         return false;
@@ -82,11 +84,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     @Override
     public void hideProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void showSnackBarError(String message) {
-
     }
 
     @Override

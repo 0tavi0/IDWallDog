@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.jonasvieira.iddog.Presentations.Feed.FeedActivity;
 import com.jonasvieira.iddog.R;
@@ -18,8 +17,6 @@ import com.jonasvieira.iddog.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.widget.Toast.makeText;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 

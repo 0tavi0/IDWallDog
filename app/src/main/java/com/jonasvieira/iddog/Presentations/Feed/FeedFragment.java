@@ -11,10 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.jonasvieira.iddog.Presentations.Details.DetailsActivity;
-import com.jonasvieira.iddog.Presentations.Details.DetailsContract;
 import com.jonasvieira.iddog.Presentations.Feed.Adapter.FeedAdapter;
 import com.jonasvieira.iddog.R;
 import com.jonasvieira.iddog.Utils.Constants;

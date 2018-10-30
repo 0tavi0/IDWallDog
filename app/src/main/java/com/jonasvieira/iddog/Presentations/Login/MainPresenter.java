@@ -31,14 +31,18 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void hasAutoLogin() {
-        LoginDAO loginDAO = new LoginDAO();
-        if (loginDAO.count() > 0) {
-            List<User> mList = loginDAO.consultAll();
-            if (mList != null) {
-                view.navigateToFeed();
-            } else {
-                view.showSnackBarError("erro ao consultar token do banco");
+        if (isNetworkAvailable()) {
+            LoginDAO loginDAO = new LoginDAO();
+            if (loginDAO.count() > 0) {
+                List<User> mList = loginDAO.consultAll();
+                if (mList != null) {
+                    view.navigateToFeed();
+                } else {
+                    view.showSnackBarError(mContext.getString(R.string.erro_banco));
+                }
             }
+        } else {
+            view.showSnackBarError(mContext.getString(R.string.sem_conexao));
         }
     }
 
@@ -97,14 +101,13 @@ public class MainPresenter implements MainContract.Presenter {
                 controlVisibilityProgress(false);
             }
         });
-
     }
 
     private void saveCredentials(User user) {
         if (new LoginDAO().save(user)) {
             view.navigateToFeed();
         } else {
-            view.showSnackBarError("Erro ao salvar");
+            view.showSnackBarError(mContext.getString(R.string.erro_salvar_banco));
         }
         controlVisibilityProgress(false);
     }

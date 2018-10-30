@@ -20,7 +20,6 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         splashPresenter.delayToIntent();
     }
 
-
     @Override
     public void showLogin() {
         startActivity(new Intent(SplashActivity.this, MainActivity.class));

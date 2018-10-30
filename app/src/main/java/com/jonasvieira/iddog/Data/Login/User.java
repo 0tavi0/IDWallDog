@@ -3,7 +3,6 @@ package com.jonasvieira.iddog.Data.Login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
 
 public class User extends SugarRecord {
 

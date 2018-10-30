@@ -23,4 +23,6 @@
     <string name="image_dog_expanded">image dog expanded</string>
     <string name="email_vazio">Campo obrigatório, insira um e-mail válido</string>
     <string name="email_invalido">E-mail invalido, verifique o endereço digitado e tente novamente</string>
+    <string name="erro_banco">Ops... Ocorreu um erro ao buscar seus dados no banco</string>
+    <string name="erro_salvar_banco">Ops... Ocorreu um erro ao salvar seus dados, tente novamente!</string>
 </resources>

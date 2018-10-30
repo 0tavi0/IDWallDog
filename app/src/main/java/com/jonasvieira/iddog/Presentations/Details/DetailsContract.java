@@ -6,8 +6,6 @@ public interface DetailsContract {
         void showProgressBar();
 
         void hideProgressBar();
-
-        void showSnackBarError(String message);
     }
 
     interface Presenter {
